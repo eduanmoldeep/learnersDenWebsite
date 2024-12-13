@@ -1,0 +1,26 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/home/Hero.astro';
+import Features from '../components/home/Features.astro';
+import BlogCard from '../components/blog/BlogCard.astro';
+import { getLatestPosts } from '../utils/posts';
+
+const latestPosts = await getLatestPosts(3);
+---
+
+<Layout title="Welcome">
+  <Hero />
+
+  <section class="py-12">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-3xl font-bold mb-8">Latest Blog Posts</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {latestPosts.map(post => (
+          <BlogCard {...post.data} slug={post.slug} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Features />
+</Layout>

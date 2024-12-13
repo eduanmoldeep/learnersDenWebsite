@@ -1,0 +1,18 @@
+---
+const links = [
+  { href: '/blog', label: 'Blog' },
+  { href: '/resources', label: 'Resources' },
+  { href: '/about', label: 'About' }
+];
+---
+
+<div>
+  <h3 class="text-xl font-bold mb-4">Quick Links</h3>
+  <ul class="space-y-2">
+    {links.map(link => (
+      <li>
+        <a href={link.href} class="hover:text-purple-300">{link.label}</a>
+      </li>
+    ))}
+  </ul>
+</div>

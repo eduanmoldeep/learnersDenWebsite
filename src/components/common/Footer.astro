@@ -1,0 +1,20 @@
+---
+import SocialLinks from './SocialLinks.astro';
+import QuickLinks from './QuickLinks.astro';
+---
+
+<footer class="bg-gray-900 text-white mt-12">
+  <div class="max-w-6xl mx-auto px-4 py-8">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div>
+        <h3 class="text-xl font-bold mb-4">The Learner's Den</h3>
+        <p>Empowering learners through community and knowledge sharing.</p>
+      </div>
+      <QuickLinks />
+      <SocialLinks />
+    </div>
+    <div class="border-t border-gray-800 mt-8 pt-8 text-center">
+      <p>&copy; {new Date().getFullYear()} The Learner's Den. All rights reserved.</p>
+    </div>
+  </div>
+</footer>

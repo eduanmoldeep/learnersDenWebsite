@@ -1,0 +1,29 @@
+---
+import FeatureCard from './FeatureCard.astro';
+
+const features = [
+  {
+    title: 'Community Learning',
+    description: 'Learn together with like-minded individuals in a supportive environment.'
+  },
+  {
+    title: 'Quality Resources',
+    description: 'Access curated learning materials and tutorials from experienced educators.'
+  },
+  {
+    title: 'Knowledge Sharing',
+    description: "Share your experiences and learn from others' journeys."
+  }
+];
+---
+
+<section class="py-12 bg-gray-50">
+  <div class="max-w-6xl mx-auto">
+    <h2 class="text-3xl font-bold mb-8">Why Join Learners Den?</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {features.map(feature => (
+        <FeatureCard {...feature} />
+      ))}
+    </div>
+  </div>
+</section>
