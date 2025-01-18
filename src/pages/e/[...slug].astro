@@ -1,0 +1,84 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+export async function getStaticPaths() {
+	const posts = await getCollection('blog');
+	const events = await getCollection('events');
+	return [...posts, ...events].map(item => ({
+		params: { slug: item.slug },
+		props: { post: item },
+	}));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+---
+
+<Layout title={post.data.title}>
+	<div class="container">
+		<header>
+			<h1>{post.data.title}</h1>
+		</header>
+		<main>
+			<section class="event-details">
+				<div class="image-container">
+					{post.data.image && (
+						<img
+							src={post.data.image}
+							alt={post.data.title}
+							style="max-width: 100%; height: auto; border-radius: 8px; margin-bottom: 20px;"
+						/>
+					)}
+				</div>
+				<div class="text-container">
+					<p><strong>Event Name:</strong> {post.data.title}</p>
+					<p><strong>Platform:</strong> {post.data.platform}</p>
+					<p><strong>Date:</strong> {post.data.date}</p>
+					<p><strong>Entry Fee:</strong> {post.data.entryFee}</p>
+					<p><strong>Prize Pool:</strong> {post.data.prizePool}</p>
+					<p>{post.data.description}</p>
+					<br />
+					<h2>Registration</h2>
+					<p>To participate, click below and follow the steps.</p>
+					<button style="margin-top: 10px;" onclick="redirectToPayment()">
+						Register Now <i class="fas fa-external-link-alt small-icon"></i>
+					</button>
+				</div>
+			</section>
+		</main>
+	</div>
+
+	<script>
+		function redirectToPayment() {
+			window.location.href = "{post.data.paymentLink}"; // Replace with your payment link
+		}
+	</script>
+
+	<style>
+		.container {
+			max-width: 800px; /* Adjust as needed */
+			margin: 0 auto; /* Center the container */
+			padding: 20px; /* Add some padding */
+			text-align: center; /* Center align text */
+		}
+		.event-details {
+			display: flex; /* Use flexbox for layout */
+			justify-content: space-between; /* Space between items */
+			align-items: flex-start; /* Align items at the start */
+			flex-wrap: wrap; /* Allow wrapping on smaller screens */
+		}
+		.image-container,
+		.text-container {
+			flex: 1; /* Allow both containers to grow equally */
+			margin: 10px; /* Add some margin for spacing */
+		}
+		@media (max-width: 768px) {
+			.image-container,
+			.text-container {
+				flex: 100%; /* Stack on smaller screens */
+			}
+		}
+		/* ... existing styles ... */
+	</style>
+</Layout>

@@ -1,0 +1,23 @@
+---
+// src/components/events/EventCard.astro
+   interface Props {
+       slug: string;
+       title: string;
+       description: string;
+       publishDate: Date;
+       author: string;
+       image?: string;
+       draft?: boolean;
+       categories?: string[];
+   }
+
+   const { slug, title, description, publishDate, author, image, draft, categories } = Astro.props as Props;
+   ---
+   <div class="event-card">
+       <h3>{title}</h3>
+       <p>{description}</p>
+       <p>{publishDate.toLocaleDateString()}</p>
+       <p>{author}</p>
+       {image && <img src={image} alt={title} />}
+       <a href={`/events/${slug}`}>Read more</a>
+   </div>

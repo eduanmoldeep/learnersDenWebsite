@@ -1,0 +1,123 @@
+---
+import Layout from "../../layouts/Layout.astro"; // Ensure this path is correct
+import { Image } from "astro:assets"; // Import the Image component
+import chessShowdownImage from "../../assets/ChessShowDown.png"; // Adjust the path as necessary
+---
+
+<Layout title="Chess Showdown Event">
+  <div class="container">
+    <header>
+      <h1>Event Details</h1>
+    </header>
+    <main>
+      <section class="event-details">
+        <div class="image-container">
+          <Image
+            src={chessShowdownImage}
+            alt="Chess Showdown Event"
+            style="max-width: 100%; height: auto; border-radius: 8px; margin-bottom: 20px;"
+          />
+        </div>
+        <div class="text-container">
+          <p><strong>Event Name:</strong> Chess Showdown</p>
+          <p><strong>Platform:</strong> Chess.com</p>
+          <p><strong>Date:</strong> January 30, 2025 (Starts 9 PM sharp)</p>
+          <p><strong>Entry Fee:</strong> ₹50</p>
+          <p>
+            <strong>Prize Pool:</strong> ₹2000 (subject to increase with more participants)
+          </p>
+          <p>
+            Join ChessShowdown this month for a thrilling online chess
+            competition! <br>
+            Manual participant entry, fair play ensured.
+          </p>
+          <br />
+          <h2>Registration</h2>
+          <p>
+            To participate in the ChessShowdown,
+            <br />
+            click below and follow the steps.
+          </p>
+          <button style="margin-top: 10px;" onclick="redirectToPayment()">
+            Register Now <i class="fas fa-external-link-alt small-icon"></i>
+          </button>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    function redirectToPayment() {
+      window.location.href = "https://rzp.io/rzp/yTwFOaR"; // Replace with your Razorpay payment link
+    }
+  </script>
+
+  <style>
+    .container {
+      max-width: 800px; /* Adjust as needed */
+      margin: 0 auto; /* Center the container */
+      padding: 20px; /* Add some padding */
+      text-align: center; /* Center align text */
+    }
+
+    .event-details,
+    .registration {
+      margin-bottom: 20px; /* Space between sections */
+    }
+
+    h1,
+    h2 {
+      margin-bottom: 10px; /* Space below headings */
+      font-weight: bold; /* Set font weight to bold */
+      font-size: 1.5em; /* Increase font size */
+    }
+
+    button {
+      background-color: #4caf50; /* Green background */
+      color: white; /* White text */
+      padding: 10px 20px; /* Padding */
+      border: none; /* No border */
+      border-radius: 5px; /* Rounded corners */
+      cursor: pointer; /* Pointer cursor on hover */
+    }
+
+    button:hover {
+      background-color: #45a049; /* Darker green on hover */
+    }
+
+    .image-container {
+      text-align: center; /* Center the image */
+    }
+
+    .text-container {
+      text-align: left; /* Left align the text */
+      margin: 0 auto; /* Center the container */
+      max-width: 600px; /* Set a max width for readability */
+    }
+
+    .event-details {
+      display: flex; /* Use flexbox for layout */
+      justify-content: space-between; /* Space between items */
+      align-items: flex-start; /* Align items at the start */
+      flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    }
+
+    .image-container,
+    .text-container {
+      flex: 1; /* Allow both containers to grow equally */
+      margin: 10px; /* Add some margin for spacing */
+    }
+
+    @media (max-width: 768px) {
+      .image-container,
+      .text-container {
+        flex: 100%; /* Stack on smaller screens */
+      }
+    }
+
+    .registration {
+      margin-bottom: 20px; /* Space between sections */
+      margin-top: 20px; /* Adjust this value as needed for spacing */
+    }
+  </style>
+</Layout>

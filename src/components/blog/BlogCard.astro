@@ -1,15 +1,16 @@
 ---
 interface Props {
+  slug: string;
   title: string;
   description: string;
   publishDate: Date;
   author: string;
-  slug: string;
   image?: string;
-  categories: string[];
+  draft?: boolean;
+  categories?: string[];
 }
 
-const { title, description, publishDate, author, slug, image, categories } = Astro.props;
+const { slug, title, description, publishDate, author, image, draft, categories } = Astro.props as Props;
 ---
 
 <article class="bg-white rounded-lg shadow-md overflow-hidden">
@@ -32,7 +33,7 @@ const { title, description, publishDate, author, slug, image, categories } = Ast
     <div class="flex items-center justify-between">
       <span class="text-gray-600">{author}</span>
       <div class="flex gap-2">
-        {categories.map(category => (
+        {categories?.map(category => (
           <span class="bg-gray-100 text-gray-700 px-2 py-1 rounded-full text-sm">
             {category}
           </span>

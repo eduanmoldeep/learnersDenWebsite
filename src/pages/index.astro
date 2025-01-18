@@ -3,9 +3,12 @@ import Layout from '../layouts/Layout.astro';
 import Hero from '../components/home/Hero.astro';
 import Features from '../components/home/Features.astro';
 import BlogCard from '../components/blog/BlogCard.astro';
+import EventCard from '../components/event/EventCard.astro';
 import { getLatestPosts } from '../utils/posts';
+import { getLatestEvents } from '../utils/events';
 
 const latestPosts = await getLatestPosts(3);
+const latestEvents = await getLatestEvents(3);
 ---
 
 <Layout title="Welcome">
@@ -16,7 +19,27 @@ const latestPosts = await getLatestPosts(3);
       <h2 class="text-3xl font-bold mb-8">Latest Blog Posts</h2>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         {latestPosts.map(post => (
-          <BlogCard {...post.data} slug={post.slug} />
+          <BlogCard 
+              slug={post.slug} 
+              title={post.data.title} 
+              description={post.data.description} 
+              publishDate={post.data.publishDate} 
+              author={post.data.author} 
+              image={post.data.image} 
+              draft={post.data.draft} 
+              categories={post.data.categories} 
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-3xl font-bold mb-8">Upcoming Events</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {latestEvents.map(event => (
+          <EventCard {...event.data} slug={event.slug} />
         ))}
       </div>
     </div>
